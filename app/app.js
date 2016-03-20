@@ -1,5 +1,6 @@
 import {App, Platform} from 'ionic-angular';
 import {TabsPage} from './pages/tabs/tabs';
+import {Login} from './pages/login/login';
 
 
 @App({
@@ -12,7 +13,8 @@ export class MyApp {
   }
 
   constructor(platform) {
-    this.rootPage = TabsPage;
+    this.rootPage = Login;
+    //this.rootPage = TabsPage;
 
     platform.ready().then(() => {
       // The platform is now ready. Note: if this callback fails to fire, follow

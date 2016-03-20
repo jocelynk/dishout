@@ -1,0 +1,24 @@
+<ionic-content class="signup-background">
+    <img src="build/img/logo.png" alt="DishOut">
+    <div></div>
+    <ion-list>
+
+        <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input [(ngModel)]="username" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input [(ngModel)]="password" type="password"></ion-input>
+        </ion-item>
+
+    </ion-list>
+
+    <div padding>
+        <button block (click)="login($event, username, password)">Sign In</button>
+    </div>
+</ionic-content>
+
+
+
