@@ -1,0 +1,43 @@
+
+<ion-navbar *navbar>
+  <ion-title>
+    Vendor and Drop Off Sites
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="map">
+  <div padding>
+    <ion-segment [(ngModel)]="locations" (change)="onSegmentChanged($event)">
+      <ion-segment-button value="map">
+        Map
+      </ion-segment-button>
+      <ion-segment-button value="list">
+        List
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="locations" style="height:100%">
+    <ion-content *ngSwitchWhen="'map'" style="height:100%">
+      <div id="map" style="height:100%">
+        <!-- <div class="bar bar-header item-input-inset top-sm margin-left-sm width-80-per">
+           <label class="item-input-wrapper">
+             <i class="icon ion-ios-search placeholder-icon"></i>
+             <input type="search" placeholder="Search" ng-model="searchTerm.address">
+           </label>
+           <button class="button button-submit" ng-click="addressLookup()">
+             Search
+           </button>
+         </div>-->
+      </div>
+    </ion-content>
+
+    <ion-list *ngSwitchWhen="'list'">
+      <ion-item>
+        <ion-thumbnail item-left>
+
+        </ion-thumbnail>
+        <h2>Vendor1</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

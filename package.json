@@ -23,5 +23,11 @@
     "webpack": "1.12.14"
   },
   "name": "dishout",
-  "description": "dishout: An Ionic project"
+  "description": "dishout: An Ionic project",
+  "cordovaPlugins": [
+    "cordova-plugin-geolocation"
+  ],
+  "cordovaPlatforms": [
+    "android"
+  ]
 }
