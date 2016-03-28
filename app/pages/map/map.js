@@ -1,19 +1,22 @@
 import {Page} from 'ionic-angular';
 import {MapService} from '../../services/MapService';
+import {Http} from 'angular2/http';
+import 'rxjs/operator/map';
 
 @Page({
-
   templateUrl: 'build/pages/map/map.html',
   providers: [MapService]
 })
 export class Map {
   static get parameters() {
-    return [[MapService]];
+    return [[MapService], [Http]];
   }
-  constructor(mapService) {
+  constructor(mapService, http) {
     this.locations = "map";
     this.map = null;
+    this.vendors = null;
     this.mapService = mapService;
+    this.http = http;
     /*navigator.geolocation.getCurrentPosition(function(position) {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -30,13 +33,19 @@ export class Map {
       console.log(err);
     });*/
     //mapService.initalizeMap(this.map);
+    this.getVendors();
+  }
+
+  ngOnChanges() {
 
   }
 
   ngOnInit() {
+    console.log("ngOnInit");
     this.mapService.initalizeMap().subscribe(data => {
         this.map = data;
-        console.log(this.map);
+        //console.log(this.map);
+
         /*if(window.cordova) {
           this.map.addMarker({
             'position': this.map.center,
@@ -59,6 +68,12 @@ export class Map {
             map: this.map,
             title: 'hello'
           });
+          var self = this;
+          this.vendors.forEach(function(vendor) {
+            var address = vendor.street1 + " " + vendor.city + ", " + vendor.state + " " + vendor.zipcode;
+            var v = {name: vendor.name, address: address, phone_number: vendor.phone_number};
+            self.mapService.addressLookup(v, self.map, null);
+          })
         //}
 
       }
@@ -66,9 +81,19 @@ export class Map {
 
   }
 
- /* ngAfterViewInit() {
+  getVendors() {
+    console.log("Getting Vendors");
+    this.http.get('http://localhost:3000/api/vendors')
+        .map( (responseData) => {return responseData.json(); })
+        .subscribe(
+          data => this.vendors = data,
+          err => this.logError(err),
+          () => console.log(this.vendors)
+        )
 
-  }*/
+
+  }
+
 
 
   onSegmentChanged(event) {

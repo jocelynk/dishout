@@ -59,13 +59,13 @@ export class MapService{
                 navigator.geolocation.getCurrentPosition(function(position) {
                     let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-                    console.log(latLng);
+                    //console.log(latLng);
                     let mapOptions = {
                         center: latLng,
                         zoom: 15,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     }
-                    console.log(document.getElementById("map"));
+                    //console.log(document.getElementById("map"));
                     var map =  new google.maps.Map(document.getElementById("map"), mapOptions);
                     observer.next(map);
                     //call complete if you want to close this stream (like a promise)
@@ -75,10 +75,30 @@ export class MapService{
                 });
             });
 
-
-
-
         //}
+    }
+
+    addressLookup(vendor, map, callback) {
+        var request = {
+            'address': vendor.address
+        };
+
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode(request, function (results, status) {
+            if (results.length) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            } else {
+                alert("Location not found");
+            }
+        });
+
     }
 
 }

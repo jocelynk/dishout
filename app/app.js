@@ -1,11 +1,12 @@
 import {App, Platform} from 'ionic-angular';
 import {TabsPage} from './pages/tabs/tabs';
 import {Login} from './pages/login/login';
+import 'rxjs/Rx';
 
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/
+  config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
   static get parameters() {
