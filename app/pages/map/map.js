@@ -84,7 +84,16 @@ export class Map {
   getVendors() {
     console.log("Getting Vendors");
     this.http.get('http://localhost:3000/api/vendors')
-        .map( (responseData) => {return responseData.json(); })
+        .map( (responseData) => {
+          var vendors = [];
+          var jsonObject =  responseData.json();
+          for (var key in jsonObject) {
+            if (jsonObject.hasOwnProperty(key)) {
+              vendors.push(jsonObject[key]);
+            }
+          }
+          return vendors;
+        })
         .subscribe(
           data => this.vendors = data,
           err => this.logError(err),

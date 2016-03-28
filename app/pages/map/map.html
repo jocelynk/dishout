@@ -30,14 +30,15 @@
          </div>-->
       </div>
     </ion-content>
+    <ion-content  *ngSwitchWhen="'list'">
+      <ion-list *ngFor="#vendor of vendors; #i = index">
+        <ion-item>
+           <h2>{{vendor.vendor_name}}</h2>
+           <h3>{{vendor.street1}} {{vendor.city}} {{vendor.state}} {{vendor.zipcode}}</h3>
+           <p>{{vendor.phone_number}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-content>
 
-    <ion-list *ngSwitchWhen="'list'">
-      <ion-item>
-        <ion-thumbnail item-left>
-
-        </ion-thumbnail>
-        <h2>Vendor1</h2>
-      </ion-item>
-    </ion-list>
   </div>
 </ion-content>
