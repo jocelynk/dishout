@@ -1,0 +1,19 @@
+<ion-navbar *navbar>
+  <ion-title>Profile</ion-title>
+</ion-navbar>
+
+<ion-content padding class="profile">
+  <ion-card>
+
+    <ion-item *ngIf="auth.user">
+      <ion-avatar item-left>
+        <img src="{{ auth.user.picture }}">
+      </ion-avatar>
+      <h2>{{ auth.user.nickname }}</h2>
+      <p>{{ auth.user.email }}</p>
+    </ion-item>
+
+  </ion-card>
+
+  <button block (click)="auth.logout(nav, login)">Logout</button>
+</ion-content>

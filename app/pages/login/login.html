@@ -1,11 +1,12 @@
+<ion-navbar *navbar>
+    <ion-title>
+        Home Page
+    </ion-title>
+</ion-navbar>
 <ionic-content class="signup-background">
-    <ion-navbar *navbar>
-        <ion-title>Profile</ion-title>
-    </ion-navbar>
-
     <ion-content padding *ngIf="!auth.authenticated()">
 
-        <button block (click)="auth.login()">Login</button>
+        <button block (click)="auth.login(nav, tabsPage)">Login</button>
 
     </ion-content>
 
@@ -26,7 +27,7 @@
         <button block (click)="auth.logout()">Logout</button>
 
     </ion-content>
-    <!--<img src="build/img/logo.png" alt="DishOut">
+    <!--
     <div></div>
     <ion-list>
 

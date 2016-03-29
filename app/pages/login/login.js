@@ -23,6 +23,11 @@ export class Login {
         this.username = "";
         this.password = "";
         this.auth = AuthService;
+        this.tabsPage = TabsPage;
+
+        if(this.auth.authenticated()) {
+            this.nav.rootNav.setRoot(TabsPage);
+        }
     }
 
     login(event, username, password) {

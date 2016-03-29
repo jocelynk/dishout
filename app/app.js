@@ -13,27 +13,27 @@ import 'rxjs/Rx';
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
   providers: [
+    AuthService,
     provide(AuthHttp, {
           useFactory: (http) => {
             return new AuthHttp(new AuthConfig(), http);
           },
           deps: [Http]
-      })//,
-    //AuthService
+      })
   ]
 })
 export class MyApp {
   static get parameters() {
-    return [[Platform]/*, [AuthService]*/];
+    return [[Platform], [AuthService]];
   }
 
-  constructor(platform) {
+  constructor(platform, AuthService) {
     this.rootPage = Login;
-    //this.auth = AuthService;
+    this.auth = AuthService;
     //this.rootPage = TabsPage;
 
     platform.ready().then(() => {
-      //this.auth.startupTokenRefresh();
+      this.auth.startupTokenRefresh();
       // The platform is now ready. Note: if this callback fails to fire, follow
       // the Troubleshooting guide for a number of possible solutions:
       //

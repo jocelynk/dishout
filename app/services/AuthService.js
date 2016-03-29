@@ -3,6 +3,7 @@ import {AuthHttp, JwtHelper, tokenNotExpired} from 'angular2-jwt';
 import {Injectable} from 'angular2/core';
 import {Observable} from 'rxjs/Rx';
 
+
 // Avoid name not found warnings
 //declare var Auth0Lock:any;
 //var Auth0Lock = null;
@@ -15,10 +16,10 @@ var user = null;
 export class AuthService {
 
     static get parameters() {
-        return [/*[JwtHelper], [Storage], [LocalStorage], */[AuthHttp]];
+        return [[AuthHttp]];
     }
 
-    constructor(/*JwtHelper, Storage, LocalStorage, */AuthHttp) {
+    constructor(AuthHttp) {
         this.jwtHelper = jwtHelper;
         this.lock = lock;
         this.local = local;
@@ -37,7 +38,7 @@ export class AuthService {
         return tokenNotExpired();
     }
 
-    login() {
+    login(nav, page) {
         // Show the Auth0 Lock widget
         this.lock.show({
             authParams: {
@@ -50,6 +51,7 @@ export class AuthService {
             }
             // If authentication is successful, save the items
             // in local storage
+            nav.rootNav.setRoot(page);
             this.local.set('profile', JSON.stringify(profile));
             this.local.set('id_token', token);
             this.local.set('refresh_token', refreshToken);
@@ -59,7 +61,8 @@ export class AuthService {
         });
     }
 
-    logout() {
+    logout(nav, page) {
+        nav.rootNav.setRoot(page);
         this.local.remove('profile');
         this.local.remove('id_token');
         this.local.remove('refresh_token');
