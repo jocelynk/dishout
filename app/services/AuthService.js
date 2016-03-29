@@ -38,6 +38,21 @@ export class AuthService {
         return tokenNotExpired();
     }
 
+    getUser(profile) {
+        var createdDate = new Date(profile.created_at).getTime();
+        var timeDifference = Math.abs(new Date().valueOf() - createdDate)/(1000);
+        console.log(timeDifference);
+        var newUser = timeDifference < 20? true : false;
+
+        if(newUser) {
+            //post call to save user and get details
+        } else {
+            //post call to get user details
+        }
+
+    }
+
+
     login(nav, page) {
         // Show the Auth0 Lock widget
         this.lock.show({
@@ -56,6 +71,7 @@ export class AuthService {
             this.local.set('id_token', token);
             this.local.set('refresh_token', refreshToken);
             this.user = profile;
+            window.location.reload();
             // Schedule a token refresh
             this.scheduleRefresh();
         });
