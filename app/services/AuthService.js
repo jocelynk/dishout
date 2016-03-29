@@ -2,6 +2,9 @@ import {Storage, LocalStorage} from 'ionic-angular';
 import {AuthHttp, JwtHelper, tokenNotExpired} from 'angular2-jwt';
 import {Injectable} from 'angular2/core';
 import {Observable} from 'rxjs/Rx';
+import { Http, RequestOptions, URLSearchParams, Headers } from 'angular2/http';
+import {contentHeaders} from '../common/headers'
+
 
 
 // Avoid name not found warnings
@@ -16,16 +19,17 @@ var user = null;
 export class AuthService {
 
     static get parameters() {
-        return [[AuthHttp]];
+        return [[AuthHttp], [Http]];
     }
 
-    constructor(AuthHttp) {
+    constructor(AuthHttp, http) {
         this.jwtHelper = jwtHelper;
         this.lock = lock;
         this.local = local;
         this.refreshSubscription = refreshSubscription;
         this.user = user;
         this.authHttp = AuthHttp;
+        this.http = http;
         // If there is a profile saved in local storage
         let profile = this.local.get('profile')._result;
         if (profile) {
@@ -38,16 +42,67 @@ export class AuthService {
         return tokenNotExpired();
     }
 
-    getUser(profile) {
+    getUser(profile, nav, page) {
         var createdDate = new Date(profile.created_at).getTime();
         var timeDifference = Math.abs(new Date().valueOf() - createdDate)/(1000);
         console.log(timeDifference);
-        var newUser = timeDifference < 20? true : false;
+        var isNewUser = timeDifference < 20? true : false;
 
-        if(newUser) {
-            //post call to save user and get details
+        var body = {'email': profile.email, 'username': profile.name};
+        if(isNewUser) {
+            console.log(isNewUser);
+            var headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+            this.http.post('http://localhost:3000/api/user', JSON.stringify(body), {headers: headers})
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    console.log(data[0]);
+                    this.user['user_points'] = data[0]['userpoints'];
+                    this.user['level_no'] = data[0]['level_no'];
+                    this.user['level_name'] = data[0]['level_name'];
+                    this.user['points_to_next_level'] = data[0]['points_to_next_level'];
+                },
+                err => this.logError(err),
+                () => {
+                    console.log('Authentication Complete');
+                    console.log(this.user);
+                    this.local.set('profile', JSON.stringify(this.user));
+                    nav.rootNav.setRoot(page);
+                    window.location.reload();
+                }
+            );
         } else {
-            //post call to get user details
+
+            let params = new URLSearchParams();
+            params.set('email', profile.email);
+            params.set('username', profile.name);
+            let options = new RequestOptions({
+            headers: contentHeaders,
+            // Have to make a URLSearchParams with a query string
+            search: params
+            });
+
+            this.http.get('http://localhost:3000/api/user', options)
+                .map(res => res.json())
+                .subscribe(
+                    data => {
+                        console.log(data);
+                        this.user['user_points'] = data[0]['userpoints'];
+                        this.user['level_no'] = data[0]['level_no'];
+                        this.user['level_name'] = data[0]['level_name'];
+                        this.user['points_to_next_level'] = data[0]['points_to_next_level'];
+                    },
+                    err => this.logError(err),
+                    () => {
+                        console.log('Authentication Complete');
+                        console.log(this.user);
+                        this.local.set('profile', JSON.stringify(this.user));
+                        nav.rootNav.setRoot(page);
+                        window.location.reload();
+                    }
+                );
         }
 
     }
@@ -66,12 +121,12 @@ export class AuthService {
             }
             // If authentication is successful, save the items
             // in local storage
-            nav.rootNav.setRoot(page);
+
+            this.user = profile;
+            this.getUser(profile, nav, page);
             this.local.set('profile', JSON.stringify(profile));
             this.local.set('id_token', token);
             this.local.set('refresh_token', refreshToken);
-            this.user = profile;
-            window.location.reload();
             // Schedule a token refresh
             this.scheduleRefresh();
         });

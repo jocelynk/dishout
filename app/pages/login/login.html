@@ -18,8 +18,10 @@
                 <ion-avatar item-left>
                     <img src="{{ auth.user.picture }}">
                 </ion-avatar>
-                <h2>{{ auth.user.nickname }}</h2>
-                <p>{{ auth.user.email }}</p>
+                <h2>Name: {{ auth.user.nickname }}</h2>
+                <p>Email: {{ auth.user.email }}</p>
+                <p>Level: {{ auth.user.level_name }}</p>
+                <p>Points {{ auth.user.user_points }}</p>
             </ion-item>
 
         </ion-card>
