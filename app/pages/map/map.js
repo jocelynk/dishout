@@ -71,7 +71,8 @@ export class Map {
           var self = this;
           this.vendors.forEach(function(vendor) {
             var address = vendor.street1 + " " + vendor.city + ", " + vendor.state + " " + vendor.zipcode;
-            var v = {name: vendor.name, address: address, phone_number: vendor.phone_number};
+
+            var v = {vendor_name: vendor.vendor_name, address: address, phone_number: vendor.phone_number};
             self.mapService.addressLookup(v, self.map, null);
           })
         //}

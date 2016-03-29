@@ -91,6 +91,48 @@ export class MapService{
                         map: map,
                         position: results[0].geometry.location
                     });
+
+                    var boxText = document.createElement("div");
+                    boxText.className = 'infobox';
+                    boxText.innerHTML = "<h4 class='font-white'>" + vendor.vendor_name + "</h4><p class='font-white'>" + vendor.address + "</p><p class='font-white'>" + vendor.phone_number + "</p>";
+
+                    var myOptions = {
+                        content: boxText
+                        ,disableAutoPan: false
+                        ,maxWidth: 0
+                        ,pixelOffset: new google.maps.Size(-140, 0)
+                        ,zIndex: null
+                        ,boxStyle: {
+                            background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat"
+                            ,opacity: 0.75
+                            ,width: "280px"
+                        }
+                        ,closeBoxMargin: "10px 2px 2px 2px"
+                        ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+                        ,infoBoxClearance: new google.maps.Size(1, 1)
+                        ,isHidden: false
+                        ,pane: "floatPane"
+                        ,enableEventPropagation: false
+                    };
+
+
+                    var ib = new InfoBox(myOptions);
+                    google.maps.event.addListener(marker, 'click', function() {
+                        ib.open(map, this);
+                    });
+
+
+                    /*google.maps.event.addListener(marker,'click',(function(marker, i) {
+                        return function() {
+                            boxList[i].open(map, this);
+                        }
+                    })(marker, i));
+
+                    google.maps.event.addDomListener(boxList[i].content_,'click',(function(marker, i) {
+                        return function() {
+                            alert('clicked ' + cityList[i][0])
+                        }
+                    })(marker, i));*/
                 } else {
                     alert("Geocode was not successful for the following reason: " + status);
                 }
