@@ -4,22 +4,25 @@ import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import { Http, Headers } from 'angular2/http';
 import { contentHeaders } from '../../common/headers';
 import {TabsPage} from '../../pages/tabs/tabs';
+import {AuthService} from '../../services/AuthService';
 
 @Page({
-    templateUrl: 'build/pages/login/login.html'
+    templateUrl: 'build/pages/login/login.html',
+    providers: [AuthService]
 })
 
 export class Login {
     static get parameters() {
-        return [[NavController], [Router], [Http]];
+        return [[NavController], [Router], [Http], [AuthService]];
     }
 
-    constructor(navController, router, http) {
+    constructor(navController, router, http, AuthService) {
         this.router = router;
         this.http = http;
         this.nav = navController;
         this.username = "";
         this.password = "";
+        this.auth = AuthService;
     }
 
     login(event, username, password) {

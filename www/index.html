@@ -3,14 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Ionic</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src http://*/* https://*/* * 'unsafe-eval' 'unsafe-inline'; script-src http://*/* https://*/* * 'self' 'unsafe-inline' 'unsafe-eval'; style-src  'self' 'unsafe-inline' *; img-src * data:* ">
+  <meta http-equiv="Content-Security-Policy" content="default-src http://*/* https://*/* * 'unsafe-eval' 'unsafe-inline'; script-src http://*/* https://*/* * 'self' 'unsafe-inline' 'unsafe-eval'; style-src  'self' 'unsafe-inline' *; img-src * 'self' data:; font-src * 'self' data:">
+
+  <!-- Setting the right viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
 
   <link ios-href="build/css/app.ios.css" rel="stylesheet">
   <link md-href="build/css/app.md.css" rel="stylesheet">
-  <link wp-href="build/css/app.wp.css" rel="stylesheet">  
+  <link wp-href="build/css/app.wp.css" rel="stylesheet">
+
+  <!-- Auth0 Lock script -->
+  <script src="https://cdn.auth0.com/js/lock-8.2.min.js"></script>
+
+  <!-- Setting the right viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 <body>
 
@@ -20,5 +28,6 @@
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyB4EN-PUwcxKQwGNU_y-ee2PH0LNy1chqI"></script>
   <script src="cordova.js"></script>
   <script src="build/js/app.bundle.js"></script>
+
 </body>
 </html>
