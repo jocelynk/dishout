@@ -1,0 +1,15 @@
+
+<ion-navbar *navbar>
+  <ion-title>
+    Checkout
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="checkout">
+
+<div padding class="checkoutwrapper">
+	<h3>Scan your QRCode at the cashier</h3>
+	<img [src]="qrcode" id="qrcode">
+</div>
+<button primary (click)="receipt()">Got my dish</button>
+</ion-content>

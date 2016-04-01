@@ -13,7 +13,6 @@ var gulp = require('gulp'),
 
 var IONIC_DIR = "node_modules/ionic-angular/"
 
-
 /******************************************************************************
  * watch
  * Build the app and watch for source file changes.
@@ -28,7 +27,6 @@ gulp.task('watch', ['sass', 'copy.fonts', 'copy.html'], function(done) {
   bundle(true, done);
 });
 
-
 /******************************************************************************
  * build
  * Build the app once, without watching for source file changes.
@@ -36,7 +34,6 @@ gulp.task('watch', ['sass', 'copy.fonts', 'copy.html'], function(done) {
 gulp.task('build', ['sass', 'copy.fonts', 'copy.html'], function(done) {
   bundle(false, done);
 });
-
 
 /******************************************************************************
  * sass
@@ -99,6 +96,7 @@ gulp.task('clean', function(done) {
   del(['www/build'], done);
 });
 
+gulp.task('serve:before', ['watch']);
 
 /******************************************************************************
  * Bundle
