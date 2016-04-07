@@ -1,6 +1,7 @@
 import {NavController, Page} from 'ionic-angular';
 import {AuthService} from '../../services/AuthService';
 import {Receipt} from '../receipt/receipt';
+import {Http, Headers} from 'angular2/http';
 
 @Page({
   templateUrl: 'build/pages/checkout/checkout.html',
@@ -8,12 +9,13 @@ import {Receipt} from '../receipt/receipt';
 })
 export class Checkout {
   static get parameters() {
-    return [[AuthService], [NavController]];
+    return [[AuthService], [NavController], [Http]];
   }
 
-  constructor(authService, navController) {
+  constructor(authService, navController, http) {
     this.auth = authService;
     this.nav = navController;
+    this.http = http;
 
     //encode user_id into a qr code
     var qr = require('qr-encode');
@@ -23,7 +25,22 @@ export class Checkout {
   }
 
   receipt(){
-    this.nav.push(Receipt);
-  }
+    //TODO: this part should be done on the vendor-facing interface...
+    var today = new Date();
+    var body = {'user_id': '1', 'check_in_date': today, 'dish_number': '1', 'vendor_id': '1'};
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
 
+    this.http.post('http://localhost:3000/api/checkindish', JSON.stringify(body), {headers: headers})
+    .map(res => res.json())
+    .subscribe(
+      data => {
+        console.log(data);
+      },
+      err => this.logError(err),
+      () => {
+        this.nav.push(Receipt);
+      }
+    );
+  }
 }
