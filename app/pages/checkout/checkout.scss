@@ -1,0 +1,19 @@
+.checkout {
+
+}
+.checkoutwrapper {
+	position: relative;
+	text-align: center;
+}
+
+@mixin centerer {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+#qrcode {
+	@include centerer;
+	width: 200px;
+	height: 200px;
+}

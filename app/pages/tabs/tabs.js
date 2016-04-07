@@ -2,8 +2,8 @@ import {Page} from 'ionic-angular';
 import {Profile} from '../profile/profile';
 import {Login} from '../login/login';
 import {Map} from '../map/map';
-import {Page3} from '../page3/page3';
-
+import {Checkout} from '../checkout/checkout';
+import {Return} from '../return/return';
 
 @Page({
   templateUrl: 'build/pages/tabs/tabs.html',
@@ -17,6 +17,7 @@ export class TabsPage {
     // should be each tab's root Page
     this.tab1Root = Profile;
     this.tab2Root = Map;
-    this.tab3Root = Page3;
+    this.tab3Root = Checkout;
+    this.tab4Root = Return;
   }
 }
