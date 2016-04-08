@@ -28,9 +28,9 @@ export class MyApp {
   }
 
   constructor(platform, AuthService) {
-    this.rootPage = Login;
+    //this.rootPage = Login;
     this.auth = AuthService;
-    //this.rootPage = TabsPage;
+    this.rootPage = TabsPage;
 
     platform.ready().then(() => {
       this.auth.startupTokenRefresh();

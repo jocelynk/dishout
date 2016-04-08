@@ -19,6 +19,7 @@ export class ConfirmReturn {
   }
 
   goback(nav){
-    this.nav.pop();
+    //this.nav.pop();
+    this.nav.push(TabsPage);
   }
 }
