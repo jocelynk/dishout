@@ -31,7 +31,11 @@
     "phonegap-plugin-barcodescanner",
     "cordova-plugin-geolocation@~2.1.0",
     "cordova-plugin-whitelist@~1.2.1",
-    "plugin.google.maps@~1.3.9"
+    "plugin.google.maps@~1.3.9",
+    {
+      "locator": "https://github.com/phonegap-build/PushPlugin.git",
+      "id": "com.phonegap.plugins.PushPlugin"
+    }
   ],
   "cordovaPlatforms": []
 }
