@@ -54,7 +54,7 @@ export class AuthService {
             var headers = new Headers();
             headers.append('Content-Type', 'application/json');
 
-            this.http.post('http://localhost:3000/api/user', JSON.stringify(body), {headers: headers})
+            this.http.post('http://10.128.1.177:3000/api/user', JSON.stringify(body), {headers: headers})
             .map(res => res.json())
             .subscribe(
                 data => {
@@ -64,7 +64,7 @@ export class AuthService {
                     this.user['level_name'] = data[0]['level_name'];
                     this.user['points_to_next_level'] = data[0]['points_to_next_level'];
                 },
-                err => this.logError(err),
+                err => console.log(err),
                 () => {
                     console.log('Authentication Complete');
                     console.log(this.user);
@@ -84,7 +84,7 @@ export class AuthService {
             search: params
             });
 
-            this.http.get('http://localhost:3000/api/user', options)
+            this.http.get('http://10.128.1.177:3000/api/user', options)
                 .map(res => res.json())
                 .subscribe(
                     data => {
@@ -94,7 +94,7 @@ export class AuthService {
                         this.user['level_name'] = data[0]['level_name'];
                         this.user['points_to_next_level'] = data[0]['points_to_next_level'];
                     },
-                    err => this.logError(err),
+                    err => console.log(err),
                     () => {
                         console.log('Authentication Complete');
                         console.log(this.user);
