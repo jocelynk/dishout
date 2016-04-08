@@ -54,11 +54,7 @@ export class AuthService {
             var headers = new Headers();
             headers.append('Content-Type', 'application/json');
 
-<<<<<<< HEAD
-            this.http.post('http://localhost:3000/api/user', JSON.stringify(body), {headers: headers})
-=======
             this.http.post('http://10.128.10.104:3000/api/user', JSON.stringify(body), {headers: headers})
->>>>>>> 8c81b31d29f4fcc2ceab502f0a4da8369e2ffe21
             .map(res => res.json())
             .subscribe(
                 data => {
