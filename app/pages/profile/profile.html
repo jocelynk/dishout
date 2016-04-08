@@ -1,23 +1,27 @@
 <ion-navbar *navbar>
-  <ion-title>Profile</ion-title>
+    <ion-title>Profile</ion-title>
 </ion-navbar>
 
 <ion-content padding has-header="true" class="profile">
     <div>
         <img class="logo" src="./img/logo.png"/>
-        <button (click)="auth.logout(nav, login)" id="logout"> <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon></button>
+        <button (click)="auth.logout(nav, login)" id="logout">
+            <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+        </button>
     </div>
     <div id="content">
-      <div id="profile-info">
-        <img id="profile-image" src="{{ auth.user.picture }}"/>
-        <h1 id="profile-name">Welcome {{ auth.user.nickname }}!</h1>
-        <div class="profile-description">
-          <p>Email: {{ auth.user.email }}</p>
-          <p>Level: {{ auth.user.level_name }}</p>
-          <p>Points {{ auth.user.user_points }}</p>
-          <progress id="progress-bar" max="{{auth.user.points_to_next_level}}" value="0"> </progress>
+        <div id="profile-info">
+            <img id="profile-image" src="{{ auth.user.picture }}"/>
+            <h1 id="profile-name">Welcome {{ auth.user.nickname }}!</h1>
+            <h2 *ngIf="auth.user.cur_transaction == -1">You have no outstanding dish.</h2>
+            <h2 *ngIf="auth.user.cur_transaction != -1">You have <b dishout>1</b> outstanding dish.</h2>
+            <div class="profile-description">
+                <h3>Email: {{ auth.user.email }}</h3>
+                <h3>Level: <b dishout>{{ auth.user.level_name }}</b></h3>
+                <h3>Points {{ auth.user.user_points }}</h3>
+                <progress id="progress-bar" max="{{auth.user.points_to_next_level}}" value="0"></progress>
+            </div>
         </div>
-      </div>
     </div>
 
 </ion-content>

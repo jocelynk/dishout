@@ -36,7 +36,7 @@ export class Scandropoff {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        this.http.post('http://localhost:3000/api/checkoutdish', JSON.stringify(body), {headers: headers})
+        this.http.post('http://dishout-backend.herokuapp.com/api/checkoutdish', JSON.stringify(body), {headers: headers})
         .map(res => res.json())
         .subscribe(
           data => {

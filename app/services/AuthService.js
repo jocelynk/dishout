@@ -63,6 +63,7 @@ export class AuthService {
                     this.user['level_no'] = data[0]['level_no'];
                     this.user['level_name'] = data[0]['level_name'];
                     this.user['points_to_next_level'] = data[0]['points_to_next_level'];
+                    this.user['cur_transaction'] = data[0]['cur_transaction'];
                 },
                 err => console.log(err),
                 () => {
@@ -93,6 +94,7 @@ export class AuthService {
                         this.user['level_no'] = data[0]['level_no'];
                         this.user['level_name'] = data[0]['level_name'];
                         this.user['points_to_next_level'] = data[0]['points_to_next_level'];
+                        this.user['cur_transaction'] = data[0]['cur_transaction'];
                     },
                     err => console.log(err),
                     () => {
