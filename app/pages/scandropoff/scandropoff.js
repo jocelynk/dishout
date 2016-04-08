@@ -31,7 +31,7 @@ export class Scandropoff {
         var dropoff_id = result.text;
 
         // Note: hardcoded drop_off_location_id
-        var body = {'user_id': this.userid, 'check_out_date': today, 'dish_number': this.dishnumber, 'drop_off_location_id': '1'};
+        var body = {'user_id': this.userid, 'check_out_date': today, 'drop_off_location_id': '1'};
         
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
