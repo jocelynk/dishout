@@ -89,7 +89,7 @@ export class Map {
 
     getVendors() {
         console.log("Getting Vendors");
-        this.http.get('http://10.128.10.104:3000/api/vendors')
+        this.http.get('http://dishout-backend.herokuapp.com/api/vendors')
             .map((responseData) => {
                 var vendors = [];
                 var jsonObject = responseData.json();
@@ -109,7 +109,7 @@ export class Map {
 
     getDropOffLocations() {
         console.log("Getting Vendors");
-        this.http.get('http://10.128.10.104:3000/api/drop_off_locations')
+        this.http.get('http://dishout-backend.herokuapp.com/api/drop_off_locations')
             .map((responseData) => {
                 var droplocations = [];
                 var jsonObject = responseData.json();

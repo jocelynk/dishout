@@ -54,7 +54,7 @@ export class AuthService {
             var headers = new Headers();
             headers.append('Content-Type', 'application/json');
 
-            this.http.post('http://10.128.10.104:3000/api/user', JSON.stringify(body), {headers: headers})
+            this.http.post('http://dishout-backend.herokuapp.com/api/user', JSON.stringify(body), {headers: headers})
             .map(res => res.json())
             .subscribe(
                 data => {
@@ -84,7 +84,7 @@ export class AuthService {
             search: params
             });
 
-            this.http.get('http://10.128.10.104:3000/api/user', options)
+            this.http.get('http://dishout-backend.herokuapp.com/api/user', options)
                 .map(res => res.json())
                 .subscribe(
                     data => {
