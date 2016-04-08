@@ -9,7 +9,9 @@
 </ion-navbar>
 
 <ion-content padding class="receipt">
-  <h1>Thank you for checking out at Maru!</h1>
-  <h1>Please return the dish in 7 days.</h1>
-  <button primary (click)="goback()">Go back to Homepage</button>
+	<div class="msg">
+		<h1 light>Thank you!</h1>
+		<h4 light>Please return the dish in 7 days.</h4>
+	</div>
+	<button block outline light class="homebutton" (click)="goback()">Go back to Homepage</button>
 </ion-content>

@@ -54,6 +54,6 @@ export class Scanvendor {
         }));
       });
     });
-
+    //this.nav.push(Receipt);
   }
 }

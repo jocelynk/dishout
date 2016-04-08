@@ -24,16 +24,8 @@ export class Return {
   }
 
   scan() {
-    // TODO: get drop off box id from scan   
     this.platform.ready().then(() => {
       cordova.plugins.barcodeScanner.scan((result) => {
-        /*
-        this.nav.present(Alert.create({
-          title: "Scan Results",
-          subTitle: result.text,
-          buttons: ["Close"]
-        }));
-        */
 
         var dishid = result.text;
         // Note: hardcoded dish_number and user_id
@@ -46,5 +38,6 @@ export class Return {
         }));
       });
     });
+    //this.nav.push(Scandropoff, {dish_number: '1', user_id: '1'});
   }
 }

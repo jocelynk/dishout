@@ -9,8 +9,9 @@
 </ion-navbar>
 
 <ion-content padding class="confirm-return">
-  <ion-card>
-  	<h1> Thank you for returning the dish! You earned 10 point!</h1>
-  	<button primary (click)="goback()">Back to Homepage</button>
-  </ion-card>
+	<div class="msg">
+  		<h1 light> Thank you! </h1>
+  		<h4 light>You earned 10 point!</h4>
+  	</div>
+  	<button block outline class="homebutton" (click)="goback()">Back to Homepage</button>
 </ion-content>

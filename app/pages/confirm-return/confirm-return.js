@@ -1,5 +1,4 @@
 import {Page, NavController} from 'ionic-angular';
-import {TabsPage} from '../tabs/tabs';
 /*
   Generated class for the ConfirmReturnPage page.
 
@@ -19,7 +18,6 @@ export class ConfirmReturn {
   }
 
   goback(nav){
-    //this.nav.pop();
-    this.nav.push(TabsPage);
+    this.nav.pop();
   }
 }

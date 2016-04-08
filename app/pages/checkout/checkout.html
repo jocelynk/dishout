@@ -1,11 +1,9 @@
-
 <ion-navbar *navbar>
-  <ion-title>
-    Checkout
-  </ion-title>
+  <ion-title>Checkout</ion-title>
 </ion-navbar>
 
-<ion-content class="checkout">
-<h1>Please scan the dish:</h1>
-<button primary (click)="scan()">Got my dish</button>
+<ion-content padding class="checkout">
+	<img class="center" src="./img/step1.png"/>
+	<h3 class="title">Please scan your dish</h3>
+	<button primary class="scanbutton" (click)="scan()">Scan dish</button>
 </ion-content>
