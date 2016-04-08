@@ -19,7 +19,7 @@ export class Receipt{
   }
 
   goback(){
-    //this.nav.pop();
-    this.nav.push(TabsPage);
+    this.nav.pop();
+    //this.nav.push(TabsPage);
   }
 }

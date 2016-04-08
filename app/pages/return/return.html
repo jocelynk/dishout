@@ -9,14 +9,7 @@
 </ion-navbar>
 
 <ion-content padding class="return">
-	<ion-card>
-		<ion-item *ngIf="auth.user">
-			<p>{{ auth.user.user_id }}</p>
-			<h2>
-				You have 1 dish checked out.
-			</h2>
-		</ion-item>
-	</ion-card>
-	<h1>Please scan the Dish:</h1>
-	<button block (click)="scan()">Scan the Dish</button>
+	<img class="center" src="./img/step1.png">
+	<h3 class="title">Please scan your dish</h3>
+	<button primary class="scanbutton" (click)="scan()">Scan the Dish</button>
 </ion-content>

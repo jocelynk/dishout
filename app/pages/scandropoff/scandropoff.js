@@ -55,7 +55,7 @@ export class Scandropoff {
         }));
       });
     });
-
+    //this.nav.push(ConfirmReturn);
   }
 
 }

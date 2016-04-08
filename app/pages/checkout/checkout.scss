@@ -1,6 +1,31 @@
 .checkout {
-
+  background-image: url("../../img/scan-dish-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height:100%;
+  text-align: center;
 }
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.title {
+	margin-top: 20%;
+}
+
+.scanbutton {
+	width: 60%;
+	margin-top: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
 .checkoutwrapper {
 	position: relative;
 	text-align: center;

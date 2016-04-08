@@ -36,6 +36,7 @@ export class Checkout {
           buttons: ["Close"]
         }));
       });
-    }); 
+    });
+    //this.nav.push(Scanvendor, {user_id: '1', dish_number: '1'});
   }
 }
