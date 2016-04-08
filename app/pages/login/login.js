@@ -24,8 +24,12 @@ export class Login {
         this.password = "";
         this.auth = AuthService;
         this.tabsPage = TabsPage;
+    }
 
+    ngOnInit() {
         if(this.auth.authenticated()) {
+            //this.updateProgressBar(this.auth.user.user_points, this.auth.user.points_to_next_level);
+            console.log(this.auth.user);
             this.nav.rootNav.setRoot(TabsPage);
         }
     }
@@ -34,6 +38,17 @@ export class Login {
         console.log(event);
         console.log(username);
         this.nav.push(TabsPage);
+    }
+
+    updateProgressBar(value, max) {
+        var pBar = document.getElementById('pbar');
+        if(max) {
+            pBar.max = max;
+        }
+
+        if(value) {
+            pBar.value = value;
+        }
     }
 
     /*login(event, username, password) {
