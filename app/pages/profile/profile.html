@@ -2,20 +2,22 @@
   <ion-title>Profile</ion-title>
 </ion-navbar>
 
-<ion-content padding class="profile">
-  <ion-card>
+<ion-content padding has-header="true" class="profile">
+    <div>
+        <img class="logo" src="./img/logo.png"/>
+        <button (click)="auth.logout(nav, login)" id="logout"> <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon></button>
+    </div>
+    <div id="content">
+      <div id="profile-info">
+        <img id="profile-image" src="{{ auth.user.picture }}"/>
+        <h1 id="profile-name">Welcome {{ auth.user.nickname }}!</h1>
+        <div class="profile-description">
+          <p>Email: {{ auth.user.email }}</p>
+          <p>Level: {{ auth.user.level_name }}</p>
+          <p>Points {{ auth.user.user_points }}</p>
+          <progress id="progress-bar" max="{{auth.user.points_to_next_level}}" value="0"> </progress>
+        </div>
+      </div>
+    </div>
 
-    <ion-item *ngIf="auth.user">
-      <ion-avatar item-left>
-        <img src="{{ auth.user.picture }}">
-      </ion-avatar>
-      <h2>Name: {{ auth.user.nickname }}</h2>
-      <p>Email: {{ auth.user.email }}</p>
-      <p>Level: {{ auth.user.level_name }}</p>
-      <p>Points {{ auth.user.user_points }}</p>
-    </ion-item>
-
-  </ion-card>
-
-  <button block (click)="auth.logout(nav, login)">Logout</button>
 </ion-content>

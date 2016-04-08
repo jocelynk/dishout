@@ -7,13 +7,10 @@
     <ion-content padding *ngIf="!auth.authenticated()">
 
         <button block (click)="auth.login(nav, tabsPage)">Login</button>
-
     </ion-content>
 
     <ion-content padding *ngIf="auth.authenticated()">
-
         <ion-card>
-
             <ion-item *ngIf="auth.user">
                 <ion-avatar item-left>
                     <img src="{{ auth.user.picture }}">
