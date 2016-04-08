@@ -19,6 +19,7 @@ export class Receipt{
   }
 
   goback(){
-    this.nav.pop();
+    //this.nav.pop();
+    this.nav.push(TabsPage);
   }
 }

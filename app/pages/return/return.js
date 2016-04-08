@@ -1,7 +1,6 @@
-import {Page, NavController} from 'ionic-angular';
+import {Page, Platform, Alert, NavController} from 'ionic-angular';
 import {AuthService} from '../../services/AuthService';
-import {ConfirmReturn} from '../confirm-return/confirm-return';
-import {Http, Headers} from 'angular2/http';
+import {Scandropoff} from '../scandropoff/scandropoff';
 
 /*
   Generated class for the ReturnPage page.
@@ -15,32 +14,37 @@ import {Http, Headers} from 'angular2/http';
 })
 export class Return {
   static get parameters() {
-    return [[AuthService], [NavController], [Http]];
+    return [[AuthService], [Platform], [NavController]];
   }
 
-  constructor(authService, navController, http) {
+  constructor(authService, platform, navController) {
     this.nav = navController;
+    this.platform = platform;
     this.auth = authService;
-    this.http = http;
   }
 
   scan() {
-    // TODO: get drop off box id from scan
-    var today = new Date();
-    var body = {'user_id': '1', 'check_out_date': today, 'drop_off_location_id': '1'};
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    // TODO: get drop off box id from scan   
+    this.platform.ready().then(() => {
+      cordova.plugins.barcodeScanner.scan((result) => {
+        /*
+        this.nav.present(Alert.create({
+          title: "Scan Results",
+          subTitle: result.text,
+          buttons: ["Close"]
+        }));
+        */
 
-    this.http.post('http://localhost:3000/api/checkoutdish', JSON.stringify(body), {headers: headers})
-    .map(res => res.json())
-    .subscribe(
-      data => {
-        console.log(data);
-      },
-      err => this.logError(err),
-      () => {
-        this.nav.push(ConfirmReturn);
-      }
-    );
+        var dishid = result.text;
+        // Note: hardcoded dish_number and user_id
+        this.nav.push(Scandropoff, {dish_number: '1', user_id: '1'});
+      }, (error) => {
+        this.nav.present(Alert.create({
+          title: "Attention!",
+          subTitle: error,
+          buttons: ["Close"]
+        }));
+      });
+    });
   }
 }
