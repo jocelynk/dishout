@@ -84,11 +84,7 @@ export class AuthService {
             search: params
             });
 
-<<<<<<< HEAD
-            this.http.get('http://localhost:3000/api/user', options)
-=======
             this.http.get('http://10.128.10.104:3000/api/user', options)
->>>>>>> 8c81b31d29f4fcc2ceab502f0a4da8369e2ffe21
                 .map(res => res.json())
                 .subscribe(
                     data => {
