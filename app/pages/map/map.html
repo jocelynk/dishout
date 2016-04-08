@@ -1,44 +1,59 @@
-
 <ion-navbar *navbar>
-  <ion-title>
-    Vendor and Drop Off Sites
-  </ion-title>
+    <ion-title>
+        Vendor and Drop Off Sites
+    </ion-title>
 </ion-navbar>
 
 <ion-content class="map">
-  <div padding>
-    <ion-segment [(ngModel)]="locations" (change)="onSegmentChanged($event)">
-      <ion-segment-button value="map">
-        Map
-      </ion-segment-button>
-      <ion-segment-button value="list">
-        List
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-  <div [ngSwitch]="locations" style="height:100%">
-    <ion-content *ngSwitchWhen="'map'" style="height:100%">
-      <div id="map" style="height:100%">
-        <!-- <div class="bar bar-header item-input-inset top-sm margin-left-sm width-80-per">
-           <label class="item-input-wrapper">
-             <i class="icon ion-ios-search placeholder-icon"></i>
-             <input type="search" placeholder="Search" ng-model="searchTerm.address">
-           </label>
-           <button class="button button-submit" ng-click="addressLookup()">
-             Search
-           </button>
-         </div>-->
-      </div>
-    </ion-content>
-    <ion-content  *ngSwitchWhen="'list'">
-      <ion-list *ngFor="#vendor of vendors; #i = index">
-        <ion-item>
-           <h2>{{vendor.vendor_name}}</h2>
-           <h3>{{vendor.street1}} {{vendor.city}} {{vendor.state}} {{vendor.zipcode}}</h3>
-           <p>{{vendor.phone_number}}</p>
-        </ion-item>
-      </ion-list>
-    </ion-content>
+    <div padding>
+        <ion-segment [(ngModel)]="locations" (change)="onSegmentChanged($event)">
+            <ion-segment-button value="map">
+                Map
+            </ion-segment-button>
+            <ion-segment-button value="vendors">
+                Vendors List
+            </ion-segment-button>
+            <ion-segment-button value="dropoffs">
+                Drop Off Locations List
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    <div [ngSwitch]="locations" style="height:100%">
+        <ion-content *ngSwitchWhen="'map'" style="height:100%">
+            <div id="map" style="height:100%">
+                <!-- <div class="bar bar-header item-input-inset top-sm margin-left-sm width-80-per">
+                   <label class="item-input-wrapper">
+                     <i class="icon ion-ios-search placeholder-icon"></i>
+                     <input type="search" placeholder="Search" ng-model="searchTerm.address">
+                   </label>
+                   <button class="button button-submit" ng-click="addressLookup()">
+                     Search
+                   </button>
+                 </div>-->
+            </div>
+        </ion-content>
+        <ion-content *ngSwitchWhen="'vendors'">
+            <ion-list>
+                <ion-item *ngFor="#vendor of vendors; #i = index">
+                    <h2>{{vendor.vendor_name}}</h2>
 
-  </div>
+                    <h3>{{vendor.street1}} {{vendor.city}} {{vendor.state}} {{vendor.zipcode}}</h3>
+
+                    <p>{{vendor.phone_number}}</p>
+                    <h3 *ngIf="vendor.vendor_name == 'Maru 2'">
+                        Free miso soup today with use of DishOut!
+                    </h3>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+        <ion-content *ngSwitchWhen="'dropoffs'">
+            <ion-list>
+                <ion-item *ngFor="#location of droplocations; #i = index">
+                    <h2>{{location.location_name}}</h2>
+
+                    <h3>{{location.street1}} {{location.city}} {{location.state}} {{location.zipcode}}</h3>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </div>
 </ion-content>

@@ -11,6 +11,7 @@ export class MapService{
     }
 
     constructor(http) {
+        this.infoBox = new InfoBox();
     }
 
 
@@ -78,23 +79,44 @@ export class MapService{
         //}
     }
 
-    addressLookup(vendor, map, callback) {
+    addressLookup(location, map, type) {
         var request = {
-            'address': vendor.address
+            'address': location.address
         };
 
         var geocoder = new google.maps.Geocoder();
+        var self = this;
         geocoder.geocode(request, function (results, status) {
             if (results.length) {
                 if (status == google.maps.GeocoderStatus.OK) {
+                    var iconBase = "./img/";
+                    var icon = {
+                        url: type == "vendor"? iconBase + 'restaurant.png': iconBase + 'dropoff.png',
+                        scaledSize: new google.maps.Size(30, 30)
+                    };
+
                     var marker = new google.maps.Marker({
                         map: map,
-                        position: results[0].geometry.location
+                        position: results[0].geometry.location,
+                        icon: icon
                     });
 
                     var boxText = document.createElement("div");
                     boxText.className = 'infobox';
-                    boxText.innerHTML = "<h4 class='font-white'>" + vendor.vendor_name + "</h4><p class='font-white'>" + vendor.address + "</p><p class='font-white'>" + vendor.phone_number + "</p>";
+                    if(type == 'vendor') {
+                        //temporarily hardcoding promotion for demo purposes
+                        if(location.vendor_name == "Maru 2") {
+                            boxText.innerHTML = "<h4 class='font-white'>" + location.vendor_name
+                                + "</h4><p class='font-white'>" + location.address
+                                + "</p><p class='font-white'>"
+                                + location.phone_number
+                                + "</p><h3 class='font-white'>Free miso soup today with use of DishOut!</h3>"
+                        } else
+                            boxText.innerHTML = "<h4 class='font-white'>" + location.vendor_name + "</h4><p class='font-white'>" + location.address + "</p><p class='font-white'>" + location.phone_number + "</p>";
+
+                    }
+                    else
+                        boxText.innerHTML = "<h4 class='font-white'>" + location.location_name + "</h4><p class='font-white'>" + location.address + "</p>";
 
                     var myOptions = {
                         content: boxText
@@ -116,9 +138,11 @@ export class MapService{
                     };
 
 
-                    var ib = new InfoBox(myOptions);
+
+                    //self.infoBox.setContent(boxText);
                     google.maps.event.addListener(marker, 'click', function() {
-                        ib.open(map, this);
+                        self.infoBox.setOptions(myOptions);
+                        self.infoBox.open(map, this);
                     });
 
 

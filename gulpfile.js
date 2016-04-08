@@ -27,6 +27,8 @@ gulp.task('watch', ['sass', 'copy.fonts', 'copy.html'], function(done) {
   bundle(true, done);
 });
 
+gulp.task('serve:before', ['watch']);
+
 /******************************************************************************
  * build
  * Build the app once, without watching for source file changes.
@@ -95,8 +97,6 @@ gulp.task('copy.html', function(){
 gulp.task('clean', function(done) {
   del(['www/build'], done);
 });
-
-gulp.task('serve:before', ['watch']);
 
 /******************************************************************************
  * Bundle
