@@ -24,7 +24,8 @@ export class Return {
   }
 
   scan() {
-    this.platform.ready().then(() => {
+    this.auth.refreshUser(this.auth.user);
+    /*this.platform.ready().then(() => {
       cordova.plugins.barcodeScanner.scan((result) => {
 
         var dishid = result.text;
@@ -37,7 +38,7 @@ export class Return {
           buttons: ["Close"]
         }));
       });
-    });
+    });*/
     //this.nav.push(Scandropoff, {dish_number: '1', user_id: '1'});
   }
 }

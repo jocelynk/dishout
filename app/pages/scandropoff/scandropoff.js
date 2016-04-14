@@ -1,6 +1,8 @@
 import {Page, Platform, Alert, NavController, NavParams} from 'ionic-angular';
 import {Http, Headers} from 'angular2/http';
 import {ConfirmReturn} from '../confirm-return/confirm-return';
+import {AuthService} from '../../services/AuthService';
+
 
 /*
   Generated class for the ScandropoffPage page.
@@ -10,13 +12,15 @@ import {ConfirmReturn} from '../confirm-return/confirm-return';
 */
 @Page({
   templateUrl: 'build/pages/scandropoff/scandropoff.html',
+  providers: [AuthService]
 })
 export class Scandropoff {
   static get parameters() {
-    return [[NavController], [NavParams], [Http], [Platform]];
+    return [[NavController], [NavParams], [Http], [Platform], [AuthService]];
   }
 
-  constructor(nav, navParams, http, platform) {
+  constructor(nav, navParams, http, platform, authService) {
+    this.auth = authService;
     this.nav = nav;
     this.platform = platform;
     this.userid = navParams.get('user_id');
@@ -25,7 +29,8 @@ export class Scandropoff {
   }
 
   scan() {
-    this.platform.ready().then(() => {
+    this.auth.refreshUser(this.auth.user);
+    /*this.platform.ready().then(() => {
       cordova.plugins.barcodeScanner.scan((result) => {
         var today = new Date();
         var dropoff_id = result.text;
@@ -54,7 +59,7 @@ export class Scandropoff {
           buttons: ["Close"]
         }));
       });
-    });
+    });*/
     //this.nav.push(ConfirmReturn);
   }
 

@@ -11,7 +11,7 @@ import {contentHeaders} from '../common/headers'
 //declare var Auth0Lock:any;
 //var Auth0Lock = null;
 var jwtHelper = new JwtHelper();
-var lock  = new Auth0Lock('Jnr8067YGg77nYBmsBugJvmp3g93Za9k', 'dishout.auth0.com');
+var lock = new Auth0Lock('Jnr8067YGg77nYBmsBugJvmp3g93Za9k', 'dishout.auth0.com');
 var local = new Storage(LocalStorage);
 var refreshSubscription = null;
 var user = null;
@@ -44,20 +44,20 @@ export class AuthService {
 
     getUser(profile, nav, page) {
         var createdDate = new Date(profile.created_at).getTime();
-        var timeDifference = Math.abs(new Date().valueOf() - createdDate)/(1000);
+        var timeDifference = Math.abs(new Date().valueOf() - createdDate) / (1000);
         console.log(timeDifference);
-        var isNewUser = timeDifference < 20? true : false;
+        var isNewUser = timeDifference < 20 ? true : false;
 
         var body = {'email': profile.email, 'username': profile.name};
-        if(isNewUser) {
+        if (isNewUser) {
             console.log(isNewUser);
             var headers = new Headers();
             headers.append('Content-Type', 'application/json');
 
             this.http.post('http://dishout-backend.herokuapp.com/api/user', JSON.stringify(body), {headers: headers})
-            .map(res => res.json())
-            .subscribe(
-                data => {
+                .map(res => res.json())
+                .subscribe(
+                    data => {
                     console.log(data[0]);
                     this.user['user_points'] = data[0]['userpoints'];
                     this.user['level_no'] = data[0]['level_no'];
@@ -65,7 +65,7 @@ export class AuthService {
                     this.user['points_to_next_level'] = data[0]['points_to_next_level'];
                     this.user['cur_transaction'] = data[0]['cur_transaction'];
                 },
-                err => console.log(err),
+                    err => console.log(err),
                 () => {
                     console.log('Authentication Complete');
                     console.log(this.user);
@@ -80,31 +80,31 @@ export class AuthService {
             params.set('email', profile.email);
             params.set('username', profile.name);
             let options = new RequestOptions({
-            headers: contentHeaders,
-            // Have to make a URLSearchParams with a query string
-            search: params
+                headers: contentHeaders,
+                // Have to make a URLSearchParams with a query string
+                search: params
             });
 
             this.http.get('http://dishout-backend.herokuapp.com/api/user', options)
                 .map(res => res.json())
                 .subscribe(
                     data => {
-                        console.log(data);
-                        this.user['user_points'] = data[0]['userpoints'];
-                        this.user['level_no'] = data[0]['level_no'];
-                        this.user['level_name'] = data[0]['level_name'];
-                        this.user['points_to_next_level'] = data[0]['points_to_next_level'];
-                        this.user['cur_transaction'] = data[0]['cur_transaction'];
-                    },
+                    console.log(data);
+                    this.user['user_points'] = data[0]['userpoints'];
+                    this.user['level_no'] = data[0]['level_no'];
+                    this.user['level_name'] = data[0]['level_name'];
+                    this.user['points_to_next_level'] = data[0]['points_to_next_level'];
+                    this.user['cur_transaction'] = data[0]['cur_transaction'];
+                },
                     err => console.log(err),
-                    () => {
-                        console.log('Authentication Complete');
-                        console.log(this.user);
-                        this.local.set('profile', JSON.stringify(this.user));
-                        nav.rootNav.setRoot(page);
-                        window.location.reload();
-                    }
-                );
+                () => {
+                    console.log('Authentication Complete');
+                    console.log(this.user);
+                    this.local.set('profile', JSON.stringify(this.user));
+                    nav.rootNav.setRoot(page);
+                    window.location.reload();
+                }
+            );
         }
 
     }
@@ -202,6 +202,7 @@ export class AuthService {
         }
     }
 
+
     getNewJwt() {
         // Get a new JWT from Auth0 using the refresh token saved
         // in local storage
@@ -213,4 +214,35 @@ export class AuthService {
             this.local.set('id_token', delegationRequest.id_token);
         });
     }
+
+    refreshUser(user) {
+        let params = new URLSearchParams();
+        params.set('email', user.email);
+        params.set('username', user.name);
+        let options = new RequestOptions({
+            headers: contentHeaders,
+            // Have to make a URLSearchParams with a query string
+            search: params
+        });
+
+        this.http.get('http://dishout-backend.herokuapp.com/api/user', options)
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                console.log(data);
+                user['user_points'] = data[0]['userpoints'];
+                user['level_no'] = data[0]['level_no'];
+                user['level_name'] = data[0]['level_name'];
+                user['points_to_next_level'] = data[0]['points_to_next_level'];
+                user['cur_transaction'] = data[0]['cur_transaction'];
+            },
+                err => console.log(err),
+            () => {
+                console.log(user);
+                this.local.set('profile', JSON.stringify(user));
+            }
+        );
+    }
+
+
 }
