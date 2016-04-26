@@ -230,7 +230,7 @@ export class AuthService {
             .subscribe(
                 data => {
                 console.log(data);
-                user['user_points'] = data[0]['userpoints'];
+                user['user_points'] = data[0]['userpoints'] + 10;
                 user['level_no'] = data[0]['level_no'];
                 user['level_name'] = data[0]['level_name'];
                 user['points_to_next_level'] = data[0]['points_to_next_level'];

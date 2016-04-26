@@ -1,10 +1,11 @@
 .scandropoff {
-  background-image: url("../../img/scan-qr-bg.png");
+  background: #222;
+  /*background-image: url("../../img/scan-qr-bg.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
-  height:100%;
+  background-position: center;*/
+  //height:100%;
   text-align: center;
 }
 
@@ -15,12 +16,13 @@
 }
 
 .title {
-	margin-top: 20%;
+	margin-top: 30%;
+  	color: white;
 }
 
 .scanbutton {
 	width: 60%;
-	margin-top: 75%;
+	margin-top: 10%;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
