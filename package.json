@@ -34,6 +34,7 @@
     "plugin.google.maps@~1.3.9"
   ],
   "cordovaPlatforms": [
-    "android"
+    "android",
+    "ios"
   ]
 }

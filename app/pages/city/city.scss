@@ -1,0 +1,56 @@
+.city {
+	background-image: url("../../img/citymap1.png");
+	background-size: 100%, 100%;
+	background-repeat: no-repeat;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 30% auto;
+  background-image: url("../../img/chelsea1.png");
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  width: 80%;
+  height: 75%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup .close {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+}
+
+.popup .close:hover {
+  color: #CCE5E5;
+}
+
+#popupbutton {
+    margin-top: 80%;
+    margin-left: 25%;
+    height: 110px;
+    width: 100px;
+    background: rgba(0,0,0,0.0);
+}

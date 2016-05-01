@@ -31,6 +31,7 @@ export class MyApp {
     this.rootPage = Login;
     this.auth = AuthService;
     //this.rootPage = TabsPage;
+    //this.rootPage = CityPage;
 
     platform.ready().then(() => {
       this.auth.startupTokenRefresh();
