@@ -21,11 +21,57 @@
   opacity: 1;
 }
 
-.popup {
-  margin: 30% auto;
+div#pop1 {
   background-image: url("../../img/chelsea1.png");
   background-size: 100%, 100%;
   background-repeat: no-repeat;
+}
+
+div#pop2 {
+  background-image: url("../../img/chelsea2.png");
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+}
+
+div#pop3 {
+  background-image: url("../../img/chelsea3.png");
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+}
+
+div#pop4 {
+  background-image: url("../../img/chelsea4.png");
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+}
+
+div#pop5 {
+  background-image: url("../../img/chelsea5.png");
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+}
+
+div#pop6 {
+  background-image: url("../../img/chelsea6.png");
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+}
+
+div#pop7 {
+  background-image: url("../../img/chelsea7.png");
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+}
+
+div#pop8 {
+  background-image: url("../../img/citynotification.png");
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+}
+
+
+.popup {
+  margin: 30% auto;
   width: 80%;
   height: 75%;
   position: relative;
@@ -52,5 +98,13 @@
     margin-left: 25%;
     height: 110px;
     width: 100px;
+    background: rgba(0,0,0,0.0);
+}
+
+a#nextpop {
+    height: 230px;
+    width: 280px;
+    margin-top: 150px;
+    margin-left: 22px;
     background: rgba(0,0,0,0.0);
 }
