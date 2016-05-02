@@ -43,6 +43,7 @@
 #profile-name {
   color: #222;
   font-size: 26px;
+  margin:5px;
 }
 #profile-description {
   font-size: 15px;
@@ -55,8 +56,8 @@
 #profile-image {
   display: block;
   border-radius: 100px;
-  width: 128px;
-  height: 128px;
+  width: 100px;
+  height: 100px;
   margin: 30px auto 0;
   box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
 }
@@ -78,3 +79,28 @@
 .card3 {
   background: royalblue;
 }
+
+.item {
+  width: 90%;
+  margin-left:16px;
+}
+
+.color1 {
+  background: skyblue;
+}
+
+.color2 {
+  background: lightblue;
+}
+
+.reward {
+  position:relative;
+  top:5px;
+}
+
+.progress {
+  position:relative;
+  top:5px;
+}
+
+

@@ -3,6 +3,7 @@ import {AuthService} from '../../services/AuthService';
 import {Login} from '../login/login';
 import { Http, RequestOptions, URLSearchParams, Headers } from 'angular2/http';
 import {contentHeaders} from '../../common/headers';
+import {CityPage} from '../../pages/city/city';
 
 
 @Page({
@@ -48,5 +49,9 @@ export class Profile {
                 this.auth.local.set('profile', JSON.stringify(this.auth.user));
             }
         );
+    }
+
+    navToMap() {
+        this.nav.push(CityPage);
     }
 }

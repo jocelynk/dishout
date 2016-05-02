@@ -8,43 +8,6 @@
 
         <button block (click)="auth.login(nav, tabsPage)">Login</button>
     </ion-content>
-
-    <ion-content padding *ngIf="auth.authenticated()">
-        <ion-card>
-            <ion-item *ngIf="auth.user">
-                <ion-avatar item-left>
-                    <img src="{{ auth.user.picture }}">
-                </ion-avatar>
-                <h2>Name: {{ auth.user.nickname }}</h2>
-                <p>Email: {{ auth.user.email }}</p>
-                <p>Level: {{ auth.user.level_name }}</p>
-                <p>Points {{ auth.user.user_points }}</p>
-            </ion-item>
-
-        </ion-card>
-
-        <button block (click)="auth.logout()">Logout</button>
-
-    </ion-content>
-    <!--
-    <div></div>
-    <ion-list>
-
-        <ion-item>
-            <ion-label floating>Username</ion-label>
-            <ion-input [(ngModel)]="username" type="text"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input [(ngModel)]="password" type="password"></ion-input>
-        </ion-item>
-
-    </ion-list>
-
-    <div padding>
-        <button block (click)="login($event, username, password)">Sign In</button>
-    </div>-->
 </ionic-content>
 
 
