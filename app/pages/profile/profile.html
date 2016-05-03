@@ -11,7 +11,7 @@
     </div>
     <div id="content">
         <div id="profile-info">
-            <img id="profile-image" src="{{ auth.user.picture }}"/>
+            <img id="profile-image" src="https://en.gravatar.com/userimage/98252365/71f81f7a82de3a8edfa6cb96c9493d5e.png?"/>
             <h1 id="profile-name">Welcome {{ auth.user.nickname }}!</h1>
             <div>
                 <div class="card side-card card1" style="margin-left:17px;">
@@ -19,10 +19,10 @@
                     <p *ngIf="auth.user.cur_transaction != -1"><b dishout>1</b> <b>outstanding dish</b></p>
                 </div>
                 <div favorite class="card side-card card2" >
-                    <p><b>Level:</b><br/><b dishout>{{ auth.user.level_name }}</b></p>
+                    <p><b>Level: </b>Level: <br/><b dishout>{{ auth.user.level_name }}</b></p>
                 </div>
                 <div class="card side-card card3">
-                    <p><b>Points:</b><br/><b dishout> {{ auth.user.user_points }}</b></p>
+                    <p><b>Points:</b> <br/><b dishout> {{ auth.user.user_points }}</b></p>
                 </div>
             </div>
             <h4 class="reward">Your Rewards</h4>
